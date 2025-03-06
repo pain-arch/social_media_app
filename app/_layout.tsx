@@ -6,6 +6,8 @@ export default function RootLayout() {
   <SafeAreaProvider>
     <SafeAreaView style={{ flex: 1 }}>
       <Stack>
+        <Stack.Screen name="index" options={{ title: "Feed" }}/>
+        <Stack.Screen name="notifications" options={{ title: "Notifications", headerShown: false }}/>
       </Stack>
     </SafeAreaView>
   </SafeAreaProvider>
