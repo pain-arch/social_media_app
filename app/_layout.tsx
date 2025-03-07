@@ -1,4 +1,5 @@
 import { tokenCache } from '@/cache';
+import Initiallayout from '@/components/Initiallayout';
 import { ClerkProvider, ClerkLoaded } from '@clerk/clerk-expo'
 import { Stack } from "expo-router";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -17,8 +18,7 @@ export default function RootLayout() {
       <ClerkLoaded>
         <SafeAreaProvider>
           <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
-            <Stack screenOptions={{ headerShown: false }}>
-            </Stack>
+            <Initiallayout />
           </SafeAreaView>
         </SafeAreaProvider>
       </ClerkLoaded>
