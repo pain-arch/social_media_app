@@ -3,6 +3,9 @@
 # dependencies
 node_modules/
 
+# Folder
+/convex
+
 # Expo
 .expo/
 dist/
