@@ -45,7 +45,13 @@ http.route({
     if (eventType === "user.created") {
         const { id, email_addresses, first_name, last_name, image_url } = evt.data;
 
-        const email = email_addresses[0].email_addresses;
+        const email = email_addresses[0]?.email_address;
+
+        if (!email) {
+          console.error("Email is undefined:", email_addresses);
+          return new Response("Error: email is undefined", { status: 400 });
+      }
+
         const name = `${first_name || ""} ${last_name || ""}`.trim();
 
         try {
