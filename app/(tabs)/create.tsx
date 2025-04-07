@@ -30,6 +30,37 @@ export default function CreateScreen() {
     if (!result.canceled) setSelectedimage(result.assets[0].uri);
   };
 
+  const generateUploadUrl = useMutation(api.posts.generateUploadUrl);
+  const createPost = useMutation(api.posts.createPost);
+
+  const handleShare = async () => {
+    if (!selectedImage) return;
+
+    try {
+      setIsSharing(true);
+      const uploadUrl = await generateUploadUrl();
+
+      const uploadResult = await FileSystem.uploadAsync(uploadUrl,
+        selectedImage, {
+        httpMethod: "POST",
+        uploadType: FileSystem.FileSystemUploadType.BINARY_CONTENT,
+        mimeType: "image/jpeg",
+      });
+
+      if (uploadResult.status !== 200) throw new Error("Upload failed");
+
+      const { storageId } = JSON.parse(uploadResult.body);
+      await createPost({ storageId, caption });
+
+      router.push("/(tabs)");
+
+    } catch (error) {
+      console.log("Error sharing post",error);
+    } finally {
+      setIsSharing(false);
+    }
+  }
+
 
   if (!selectedImage) {
     return (
