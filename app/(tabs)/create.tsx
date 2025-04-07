@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, PlatformColor, Platform, ActivityIndicator, ScrollView, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, ActivityIndicator, ScrollView, TextInput } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useUser } from '@clerk/clerk-expo';
 import { useState } from 'react';
@@ -19,7 +19,16 @@ export default function CreateScreen() {
   const [selectedImage, setSelectedimage] = useState<string | null>(null);
   const [isSharing, setIsSharing] = useState(false);
 
+  const pickImage = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: "images",
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 0.8,
+    });
 
+    if (!result.canceled) setSelectedimage(result.assets[0].uri);
+  };
 
 
   if (!selectedImage) {
