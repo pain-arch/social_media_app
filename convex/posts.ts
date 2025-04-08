@@ -79,5 +79,7 @@ export const getFeedPosts = query({
           
       })
     );
+
+    return postsWithInfo;
   },
 });
