@@ -84,7 +84,7 @@ export const getFeedPosts = query({
   },
 });
 
-export const togglerLike = mutation({
+export const toggleLike = mutation({
   args: {postId: v.id("posts")},
   handler: async (ctx, args) => {
     const currentUser = await getAuthenticatedUser(ctx);
