@@ -43,6 +43,19 @@ export const getComments = query({
       .withIndex("by_post", (q) => q.eq("postId", args.postId))
       .collect();
 
-    return comments;
+      const commentsWithInfo = await Promise.all(
+        comments.map(async (comment) => {
+          const user = await ctx.db.get(comment.userId);
+          return {
+            ...comment,
+            user: {
+              fullname: user!.fullname,
+              image: user!.image,
+            }
+          };
+        })
+      )
+
+    return commentsWithInfo;
   },
 });
