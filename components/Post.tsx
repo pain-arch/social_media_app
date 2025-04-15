@@ -6,10 +6,11 @@ import { Ionicons } from '@expo/vector-icons'
 import { COLORS } from '@/constants/theme'
 import { Id } from '@/convex/_generated/dataModel'
 import { useState } from 'react'
-import { useMutation } from 'convex/react'
+import { useMutation, useQuery } from 'convex/react'
 import { api } from '@/convex/_generated/api'
 import CommentsModal from './CommentsModal'
 import { formatDistanceToNow } from 'date-fns'
+import { useUser } from '@clerk/clerk-expo'
 
 type PostProps = {
     post: {
@@ -38,9 +39,13 @@ export default function Post({ post }: PostProps) {
     const [commetsCount, setCommentsCount] = useState(post.comments);
     const [showComments, setShowComments] = useState(false);
 
+    const { user } = useUser();
+
+    const currentUser = useQuery(api.users.getUserByClerkId, user ? { clerkId: user.id } : "skip")
 
     const toggleLike = useMutation(api.posts.toggleLike);
     const toggleBookmark = useMutation(api.bookmarks.toggleBookmark);
+    const deletePost = useMutation(api.posts.deletePost);
 
     const handleLike = async () => {
         try {
@@ -56,6 +61,15 @@ export default function Post({ post }: PostProps) {
         const newIsBookmarked = await toggleBookmark({ postId: post._id });
         setIsBookmarked(newIsBookmarked);
     }
+
+    const handleDelete = async () => {
+        try {
+            await deletePost({ postId: post._id});
+        } catch (error) {
+            console.error("Error deleting post:", error);
+        }
+    }
+
 
     return (
         <View style={styles.post}>
@@ -74,9 +88,15 @@ export default function Post({ post }: PostProps) {
                         <Text style={styles.postUsername}>{post.author.username}</Text>
                     </TouchableOpacity>
                 </Link>
-                <TouchableOpacity>
-                    <Ionicons name="ellipsis-horizontal" size={20} color={COLORS.white} />
-                </TouchableOpacity>
+                { post.author._id === currentUser?._id ? (
+                    <TouchableOpacity onPress={handleDelete}>
+                        <Ionicons name="trash-outline" size={20} color={COLORS.white} />
+                    </TouchableOpacity>
+                ) : (
+                    <TouchableOpacity>
+                        <Ionicons name="ellipsis-horizontal" size={20} color={COLORS.white} />
+                    </TouchableOpacity>
+                )}
             </View>
 
 
