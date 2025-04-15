@@ -195,6 +195,7 @@ export const styles = StyleSheet.create({
         borderTopWidth: 0.5,
         borderTopColor: COLORS.surface,
         backgroundColor: COLORS.background,
+        gap: 12,
     },
     input: {
         flex: 1,
