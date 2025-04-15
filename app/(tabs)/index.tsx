@@ -1,14 +1,15 @@
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../../styles/feed.css";
 import { useAuth } from "@clerk/clerk-expo";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "@/constants/theme";
-import { STORIES } from "@/constants/mock-data";
-import Story from "@/components/Story";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Loader } from "@/components/Loader";
 import Post from "@/components/Post";
+import { STORIES } from "@/constants/mock-data";
+import Story from "@/components/Story";
+import { Image } from "expo-image";
 
 export default function Index() {
 
@@ -16,11 +17,9 @@ export default function Index() {
 
   const posts = useQuery(api.posts.getFeedPosts);
 
-  console.log("posts", posts);
-  
 
   if (posts === undefined) return <Loader />
-  if (posts?.length === 0) return <NoPostsFound /> 
+  if (posts?.length === 0) return <NoPostsFound />
 
   return (
     <View style={styles.container}>
@@ -32,39 +31,40 @@ export default function Index() {
         </TouchableOpacity>
       </View>
 
-      <ScrollView
+      <Image />
+
+      <FlatList
+        data={posts}
+        renderItem={({ item }) => <Post post={item} />}
+        keyExtractor={(item) => item._id}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{paddingBottom: 60}}
-      >
-
-        {/* stories */}
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={true}
-          style={styles.storiesContainer}
-        >
-          {
-            STORIES.map((story) => (
-              <Story key={story.id} story={story} />
-            ))
-          }
-        </ScrollView>
-
-        {/* posts */}
-          {
-            posts?.map((post) => (
-              <Post key={post._id} post={post} />
-            ))
-          }
-      </ScrollView>
+        contentContainerStyle={{ paddingBottom: 60 }}
+        ListHeaderComponent={<StorieSection />}
+      />
 
     </View>
   );
 }
 
+const StorieSection = () => {
+  return (
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={true}
+      style={styles.storiesContainer}
+    >
+      {
+        STORIES.map((story) => (
+          <Story key={story.id} story={story} />
+        ))
+      }
+    </ScrollView>
+  )
+}
+
 
 const NoPostsFound = () => (
-  <View style={{ 
+  <View style={{
     flex: 1,
     backgroundColor: COLORS.background,
     justifyContent: "center",

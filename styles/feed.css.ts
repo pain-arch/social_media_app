@@ -134,6 +134,7 @@ export const styles = StyleSheet.create({
         marginBottom: 8,
     },
     modalContainer: {
+        flex: 1,
         backgroundColor: COLORS.background,
         marginBottom: Platform.OS === "ios" ? 44 : 0,
         marginTop: Platform.OS === "ios" ? 44 : 0,
@@ -194,6 +195,7 @@ export const styles = StyleSheet.create({
         borderTopWidth: 0.5,
         borderTopColor: COLORS.surface,
         backgroundColor: COLORS.background,
+        gap: 12,
     },
     input: {
         flex: 1,
