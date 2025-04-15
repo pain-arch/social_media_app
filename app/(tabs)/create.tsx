@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, ActivityIndicator, ScrollView, TextInput } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useUser } from '@clerk/clerk-expo';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { styles } from '@/styles/create.css';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/constants/theme';
@@ -10,6 +10,7 @@ import { Image } from 'expo-image';
 import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import * as FileSystem from 'expo-file-system';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function CreateScreen() {
   const router = useRouter();
@@ -18,6 +19,14 @@ export default function CreateScreen() {
   const [caption, setCaption] = useState("");
   const [selectedImage, setSelectedimage] = useState<string | null>(null);
   const [isSharing, setIsSharing] = useState(false);
+
+    // Reset form when screen is focused
+    useFocusEffect(
+      useCallback(() => {
+        setCaption("");
+        setSelectedimage(null);
+      }, [])
+    );
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
