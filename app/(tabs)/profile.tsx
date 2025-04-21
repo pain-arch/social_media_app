@@ -112,7 +112,31 @@ export default function Profile() {
       { }
 
       {/* Selected image modal */}
-
+      <Modal
+        visible={!!selectedPost}
+        animationType="fade"
+        transparent={true}
+        onRequestClose={() => setSelectedPost(null)}
+      >
+        <View style={styles.modalBackdrop}>
+          {
+            selectedPost && (
+              <View style={styles.postDetailContaienr}>
+                <View style={styles.postDetailHeader}>
+                  <TouchableOpacity onPress={() => setSelectedPost(null)}>
+                    <Ionicons name="close" size={24} color={COLORS.white} />
+                  </TouchableOpacity>
+                </View>
+                <Image
+                  source={selectedPost.imageUrl}
+                  cachePolicy={"memory-disk"}
+                  style={styles.postDetailImage}
+                />
+              </View>
+            )
+          }
+        </View>
+      </Modal>
 
     </View>
   );
