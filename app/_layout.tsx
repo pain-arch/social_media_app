@@ -3,8 +3,10 @@ import ClerkAndConvexProvider from '@/providers/ClerkAndConvexProvider';
 import { SplashScreen } from 'expo-router';
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useFonts } from 'expo-font';
-import { useCallback } from 'react';
-
+import { useCallback, useEffect } from 'react';
+import * as Navigation from 'expo-navigation-bar';
+import { Platform } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 
 
@@ -18,6 +20,13 @@ export default function RootLayout() {
     if (!fontsLoaded) SplashScreen.hideAsync();
   }, [fontsLoaded]);
 
+  useEffect(() => {
+    if (Platform.OS === "android"){
+      Navigation.setBackgroundColorAsync("#000000");
+      Navigation.setButtonStyleAsync("light");
+    }
+  }, []);
+
   return (
     <ClerkAndConvexProvider>
       <SafeAreaProvider>
@@ -25,6 +34,7 @@ export default function RootLayout() {
           <Initiallayout />
         </SafeAreaView>
       </SafeAreaProvider>
+      <StatusBar style="light" />
     </ClerkAndConvexProvider>
   );
 }
