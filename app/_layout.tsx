@@ -6,6 +6,7 @@ import { useFonts } from 'expo-font';
 import { useCallback, useEffect } from 'react';
 import * as Navigation from 'expo-navigation-bar';
 import { Platform } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 
 
@@ -33,6 +34,7 @@ export default function RootLayout() {
           <Initiallayout />
         </SafeAreaView>
       </SafeAreaProvider>
+      <StatusBar style="light" />
     </ClerkAndConvexProvider>
   );
 }
