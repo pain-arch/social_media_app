@@ -125,7 +125,7 @@ export const toggleFollow = mutation({
         followerId: currentUser._id,
         followingId: args.followingId,
       })
-      await updateFollowCounts(ctx, currentUser._id, args.followingId, false);
+      await updateFollowCounts(ctx, currentUser._id, args.followingId, true);
 
       //send notification to the followed user
       await ctx.db.insert("notifications", {
@@ -156,6 +156,4 @@ async function updateFollowCounts(
       followers: following.followers + (isFollow ? 1 : -1),
     });
   }
-
-
 }
