@@ -211,12 +211,13 @@ export const styles = StyleSheet.create({
         textAlign: "center",
     },
     noPostContainer: {
+        flex: 1,
         alignItems: "center",
         justifyContent: "center",
         paddingVertical: 48,
         gap: 16,
     },
-    noPOstText: {
+    noPostText: {
         color: COLORS.grey,
         fontSize: 16,
     },
@@ -225,7 +226,7 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    postGrid: {
+    postsGrid: {
         flex: 1,
         flexDirection: "row",
         flexWrap: "wrap",
