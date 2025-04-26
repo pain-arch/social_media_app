@@ -1,50 +1,170 @@
-# Welcome to your Expo app 👋
+# Spotlight Social Media App 📱
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern social media application built with [Expo](https://expo.dev), [React Native](https://reactnative.dev), and [Convex](https://convex.dev). This app allows users to share posts, follow others, like and comment on posts, and receive notifications.
 
-## Get started
+## Screenshots 📸
+![Screenshot_20250426-163154](https://github.com/user-attachments/assets/3ff4cf0c-0431-4f92-aaf4-509882230560)
+![Screenshot_20250426-163833](https://github.com/user-attachments/assets/03869543-0e83-481c-8285-9b1858de0a18)
+![Screenshot_20250426-163842](https://github.com/user-attachments/assets/49753bcc-d613-403c-b259-239e26011f7d)
+![Screenshot_20250426-163916](https://github.com/user-attachments/assets/35e434a7-3209-462b-ba7c-1e85495a8c05)
+![Screenshot_20250426-164021](https://github.com/user-attachments/assets/18071ca8-5e16-4941-9718-085ab3df45da)
 
-1. Install dependencies
+
+
+## Features 🚀
+
+- **Authentication**: Secure login with Google using [Clerk](https://clerk.dev).
+- **Feed**: View posts from users, including images, captions, likes, and comments.
+- **Stories**: Horizontal scrollable stories section.
+- **Profile Management**: Edit profile, view user profiles, and follow/unfollow users.
+- **Post Creation**: Upload images and add captions to create posts.
+- **Bookmarks**: Save posts for later viewing.
+- **Notifications**: Get notified for likes, comments, and follows.
+- **Responsive Design**: Works seamlessly on Android, iOS, and web.
+
+
+## Getting Started 🛠️
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v16 or later)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/)
+- [Convex CLI](https://docs.convex.dev/cli)
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/social_media_app.git
+   cd social_media_app
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+
+3. Collecting workspace informationHere is a suggested README.md file for your GitHub project:
+
+```markdown
+# Social Media App 📱
+
+A modern social media application built with [Expo](https://expo.dev), [React Native](https://reactnative.dev), and [Convex](https://convex.dev). This app allows users to share posts, follow others, like and comment on posts, and receive notifications.
+
+## Features 🚀
+
+- **Authentication**: Secure login with Google using [Clerk](https://clerk.dev).
+- **Feed**: View posts from users, including images, captions, likes, and comments.
+- **Stories**: Horizontal scrollable stories section.
+- **Profile Management**: Edit profile, view user profiles, and follow/unfollow users.
+- **Post Creation**: Upload images and add captions to create posts.
+- **Bookmarks**: Save posts for later viewing.
+- **Notifications**: Get notified for likes, comments, and follows.
+- **Responsive Design**: Works seamlessly on Android, iOS, and web.
+
+## Project Structure 📂
+
+```
+.
+├── app/                     # Main application directory
+│   ├── (auth)/              # Authentication screens
+│   ├── (tabs)/              # Tab-based navigation screens
+│   ├── user/                # User profile screens
+│   ├── _layout.tsx          # Root layout for the app
+│   ├── index.tsx            # Default redirect to login
+├── components/              # Reusable UI components
+├── constants/               # Static constants (e.g., theme, mock data)
+├── convex/                  # Convex server functions and schema
+├── styles/                  # Style definitions for screens and components
+├── assets/                  # Static assets (images, fonts, etc.)
+├── .expo/                   # Expo-specific configurations
+├── .vscode/                 # VS Code workspace settings
+├── package.json             # Project dependencies and scripts
+├── tsconfig.json            # TypeScript configuration
+└── README.md                # Project documentation
+```
+
+## Getting Started 🛠️
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v16 or later)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/)
+- [Convex CLI](https://docs.convex.dev/cli)
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/social_media_app.git
+   cd social_media_app
+   ```
+
+2. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. Set up environment variables:
 
-   ```bash
-    npx expo start
+   Create a `.env.local` file and add the following:
+
+   ```env
+   EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
+   EXPO_PUBLIC_CONVEX_URL=your-convex-url
+   CLERK_WEBHOOK_SECRET=your-clerk-webhook-secret
    ```
 
-In the output, you'll find options to open the app in a
+4. Start the development server:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```bash
+   npm start
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+   Use the Expo Go app or an emulator to preview the app.
 
-## Get a fresh project
+## Scripts 📜
 
-When you're ready, run:
+- `npm start`: Start the Expo development server.
+- `npm run android`: Run the app on an Android emulator.
+- `npm run ios`: Run the app on an iOS simulator.
+- `npm run web`: Run the app in a web browser.
+- `npm test`: Run tests with Jest.
+- `npm run lint`: Lint the codebase.
 
-```bash
-npm run reset-project
-```
+## Technologies Used 🛠️
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- **Frontend**: React Native, Expo, TypeScript
+- **Backend**: Convex
+- **Authentication**: Clerk
+- **State Management**: Convex React
+- **Styling**: React Native Stylesheets
+- **Other Libraries**:
+  - `expo-image-picker`: For selecting images.
+  - `expo-secure-store`: For secure token storage.
+  - `date-fns`: For date formatting.
 
-## Learn more
+## Contributing 🤝
 
-To learn more about developing your project with Expo, look at the following resources:
+Contributions are welcome! Please follow these steps:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Open a pull request.
 
-## Join the community
+## License 📄
 
-Join our community of developers creating universal apps.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Acknowledgments 🙌
+
+- [Expo](https://expo.dev)
+- [React Native](https://reactnative.dev)
+- [Convex](https://convex.dev)
+- [Clerk](https://clerk.dev)
+
+
