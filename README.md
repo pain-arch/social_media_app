@@ -2,6 +2,15 @@
 
 A modern social media application built with [Expo](https://expo.dev), [React Native](https://reactnative.dev), and [Convex](https://convex.dev). This app allows users to share posts, follow others, like and comment on posts, and receive notifications.
 
+## Screenshots 📸
+![Screenshot_20250426-163154](https://github.com/user-attachments/assets/3ff4cf0c-0431-4f92-aaf4-509882230560)
+![Screenshot_20250426-163833](https://github.com/user-attachments/assets/03869543-0e83-481c-8285-9b1858de0a18)
+![Screenshot_20250426-163842](https://github.com/user-attachments/assets/49753bcc-d613-403c-b259-239e26011f7d)
+![Screenshot_20250426-163916](https://github.com/user-attachments/assets/35e434a7-3209-462b-ba7c-1e85495a8c05)
+![Screenshot_20250426-164021](https://github.com/user-attachments/assets/18071ca8-5e16-4941-9718-085ab3df45da)
+
+
+
 ## Features 🚀
 
 - **Authentication**: Secure login with Google using [Clerk](https://clerk.dev).
@@ -158,5 +167,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - [Convex](https://convex.dev)
 - [Clerk](https://clerk.dev)
 
-## Screenshots 📸
 
